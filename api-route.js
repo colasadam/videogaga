@@ -12,8 +12,8 @@ var ytdl = require('ytdl-core');
 app.use(cors());
 
 app.get('/', function (req, res) {
-    console.log("home");
-    res.sendFile(__dirname + '/home.html');
+    console.log("home2");
+    res.sendFile(__dirname + '/home2.html');
 
 
     ytdl.getInfo("M9ak5x-NYxc", (err, info) => {
