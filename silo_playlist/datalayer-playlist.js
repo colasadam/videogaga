@@ -14,13 +14,25 @@ var dataLayer ={
         });
     },
 
-    getplaylist : function(username, cb) {
-        console.log(username);
+    getplaylists : function(username, cb) {
         db.collection("playlist").find({"user": username}).toArray(function(err, docs) { //Docs est le résultat de find
             console.log(docs)
             cb(docs);
         });
     },
+
+    getplaylist : function(username,name, cb) {
+        db.collection("playlist").find({"user": username,"name":name}).toArray(function(err, docs) { //Docs est le résultat de find
+            console.log(docs)
+            cb(docs);
+        });
+    },
+
+    addplaylist : function(log, cb){
+        db.collection("playlist").insertOne(log,function(err,result){
+            
+        });
+    }
 
 }
 
