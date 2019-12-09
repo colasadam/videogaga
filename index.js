@@ -1,7 +1,7 @@
 var app = angular.module("VideoPlayer", ['jtt_youtube']);
 app.controller('WebService', ['$scope', 'youtubeFactory', function($scope, youtubeFactory) {
 
-    var _apiKey = "AIzaSyAVOBfBEJ6qnKTEZ4u5o3pP66S9zUg1_2I";
+    var _apiKey = "...";
 
     $scope.rechercher=function(){
         console.log($scope.recherche);
