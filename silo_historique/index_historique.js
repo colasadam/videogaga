@@ -26,15 +26,20 @@ app.controller('Historique', ['$scope','$http', 'youtubeFactory',function($scope
     $scope.ajouter_historique = function (id) {
         $http.post('/get_historique',req).then(function(resp){
             array1=resp.data[0].videos;
-            array1.push(id);
+            console.log(array1);
+            if(array1.length>=4){
+                array1.pop();
+            }
+            console.log(array1);
+            array1.unshift(id);
             req={
                 "utilisateur" : "adam",
                 "videolist": array1
             }
-            console.log("ok")
-            $http.post('/add_tohistorique',req).then(function(resp){
+            console.log(array1)
+            /*$http.post('/add_tohistorique',req).then(function(resp){
                 console.log(resp);
-            });
+            });*/
         });
         
 
