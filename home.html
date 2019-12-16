@@ -12,10 +12,14 @@
   </div>
 
   <div ng-controller="mainController">
+    {{url}}
     <input type="text" id="videoID" placeholder="videoID" ng-model="videoID"></input>
     <button type="submit" class="btn btn-primary" ng-click="getvideo()">Se connecter</button>
-    <video controls="controls" id="video"
-       src="https://r4---sn-gxo5uxg-jqbe.googlevideo.com/videoplayback?expire=1575908605&ei=nSDuXcesHIHW1gaJwIr4CA&ip=147.94.134.31&id=o-AECbBSEor1D8_nVurcKZHLEFKNVu0fqwmlhFdESuQOmq&itag=134&aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C298%2C299%2C302%2C303&source=youtube&requiressl=yes&mm=31%2C29&mn=sn-gxo5uxg-jqbe%2Csn-25ge7nsd&ms=au%2Crdu&mv=m&mvi=3&pcm2cms=yes&pl=23&initcwndbps=961250&mime=video%2Fmp4&gir=yes&clen=43868567&dur=1645.200&lmt=1575805291539437&mt=1575886898&fvip=4&keepalive=yes&fexp=23842630&c=WEB&txp=5535432&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cmime%2Cgir%2Cclen%2Cdur%2Clmt&sig=ALgxI2wwRgIhAOmobvLZuosGz1j1pLkHJAcI2fdimbJsWJFEgLiV665RAiEA9cNBsUPksUSCqUIXxFbI1As2DBrhv_hr_6GLIN3r6Yo%3D&lsparams=mm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpcm2cms%2Cpl%2Cinitcwndbps&lsig=AHylml4wRQIhALA3elCfTJRyaWf3QzcEcfgdY-beMyWWEbRdr8Xaf9GVAiAS3FF9c35QXoJKsxxL7Pz4mW3OvKaWp8be-Vkko871FQ%3D%3D&ratebypass=yes">
+    <div>
+
+    </div>
+    <video controls="controls" id="video" autoplay>
+      <source id="videosource" src={{url}} >
     </video>
 
   </div>

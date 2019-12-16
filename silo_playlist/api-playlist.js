@@ -31,7 +31,26 @@ app.post('/add_playlist/:user/:name',function(req,res){
         name : req.params.name,
         videos : []
     }
-    dataLayer.addplaylist(log,function(maliste){
+    dataLayer.addplaylist(log,req.params.user,function(maliste){
+        res.json(maliste)
+    })
+})
+
+app.post('/delete_playlist/:user/:name',function(req,res){
+
+    dataLayer.delete_playlist(req.params.user,req.params.name,function(maliste){
+        res.json(maliste)
+    })
+})
+
+app.post('/addto_playlist/:user/:nameplaylist/:videoid',function(req,res){
+    dataLayer.addto_playlist(req.params.user,req.params.nameplaylist,req.params.videoid,function(maliste){
+        res.json(maliste)
+    })
+})
+
+app.post('/deleteto_playlist/:user/:nameplaylist/:videoid',function(req,res){
+    dataLayer.deleteto_playlist(req.params.user,req.params.nameplaylist,req.params.videoid,function(maliste){
         res.json(maliste)
     })
 })

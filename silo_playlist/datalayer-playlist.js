@@ -28,11 +28,70 @@ var dataLayer ={
         });
     },
 
-    addplaylist : function(log, cb){
-        db.collection("playlist").insertOne(log,function(err,result){
-            
+    addplaylist : function(log,user,cb){
+        db.collection("playlist").insertOne(log,function(err,docs){
+            db.collection("playlist").find({"user":user}).toArray(function(err,docs){
+                cb(docs)
+            })
         });
+    },
+
+    delete_playlist : function(user,name,cb){
+        var playlist ={
+            "name":name
+        }
+        db.collection("playlist").deleteOne(playlist,function(err,docs){
+            db.collection("playlist").find({"user":user}).toArray(function(err,docs){
+                cb(docs)
+            })
+        })
+    },
+
+    addto_playlist : function(user,playlist,videoid,cb){
+
+        db.collection("playlist").find({"user":user,"name":playlist}).toArray(function(err,docs){
+            var id = {
+                "_id" : ObjectId(docs[0]["_id"])
+            }
+            var lvideos = docs[0]["videos"]
+            lvideos.push(videoid)
+            var data = {
+                $set:{
+                    video : lvideos
+                }
+            }
+            db.collection("playlist").updateOne(id,data,function(err,docs){
+                db.collection("playlist").find({"user":user,"name":playlist}).toArray(function(err,docs){
+                    cb(docs)
+                })
+            })
+        })
+    },
+
+    deleteto_playlist : function(user,playlist,videoid,cb){
+
+        db.collection("playlist").find({"user":user,"name":playlist}).toArray(function(err,docs){
+            var id = {
+                "_id" : ObjectId(docs[0]["_id"])
+            }
+            var lvideos = docs[0]["videos"]
+   
+            for( var i = lvideos.length-1; i--;){
+                if ( lvideos[i] === videoid) lvideos.splice(i, 1);
+                }
+            var data = {
+                $set:{
+                    video : lvideos
+                }
+            }
+            db.collection("playlist").updateOne(id,data,function(err,docs){
+                db.collection("playlist").find({"user":user,"name":playlist}).toArray(function(err,docs){
+                    cb(docs)
+                })
+            })
+        })
     }
+    
 
 }
 
