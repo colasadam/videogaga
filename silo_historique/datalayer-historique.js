@@ -21,6 +21,12 @@ var dataLayer ={
         });
     },
 
+    add_tohistorique: function(log, cb){
+        db.collection("historique").updateOne({"user":log.user},{$set : {"videos": log.video}}, function(err, result) {
+            cb();
+        });
+    }
+
 }
 
 module.exports = dataLayer; 

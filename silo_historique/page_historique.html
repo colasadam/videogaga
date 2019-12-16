@@ -41,12 +41,14 @@
         </nav>
         <div>
             <div >
-              <ul class="list-group" ng-repeat="item in historique.items">
+              <ul class="list-group" ng-repeat="item in historique">
                   <li class="list-group-item">
                     <a class="navbar-brand" href="#">{{item.snippet.title}}</a>
                     <br>
                     {{item.snippet.channelTitle}}
-                  
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" type="button" id="button-addon2" ng-click="ajouter_historique(item.id)">Ajouter à l'historique</button>
+                    </div>
                   </li>  
               </ul>
             </div>

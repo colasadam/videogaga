@@ -26,4 +26,14 @@ app.post('/get_historique', function (req, res) {
     })
 });
 
+app.post('/add_tohistorique',function(req,res){
+    var log ={
+        user: req.body.utilisateur,
+        video: req.body.videolist
+    }
+    dataLayer.add_tohistorique(log,function(maliste){
+        res.json(maliste)
+    })
+});
+
 module.exports=app;
