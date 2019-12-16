@@ -1,16 +1,27 @@
-var app = angular.module("VideoPlayer", ['jtt_youtube']);
-app.controller('WebService', ['$scope', 'youtubeFactory', function($scope, $http,youtubeFactory) {
+var app = angular.module("VideoPlayerHistorique", ['jtt_youtube']);
+app.controller('Historique', ['$scope','$http', 'youtubeFactory',function($scope, $http,youtubeFactory) {
 
     var _apiKey = "...";
-    req="adam";
+    req={
+        "utilisateur":"adam"
+    };
+    
 
-    $http.get('/get_historique',req).then(function(resp){
-        youtubeFactory.getVideoById({
-            videoId: "rG-haoIhH9o",
-            key: _apiKey,
-        }).then(function (_data) {
-            $scope.historique=_data.data;
+    $http.post('/get_historique',req).then(function(resp){
+        console.log(resp.data[0].videos);
+        array1=["","",""];
+        array1.forEach(video => {
+            youtubeFactory.getVideoById({
+                videoId: video,
+                key: _apiKey,
+            }).then(function (_data) {
+                console.log("ok");
+                $scope.historique=_data.data;
+            });
         });
+        
     })
+
+    
    
 }]);

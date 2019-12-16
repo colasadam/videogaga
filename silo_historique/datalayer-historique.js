@@ -16,8 +16,7 @@ var dataLayer ={
 
     get_historique : function(username, cb) {
         console.log(username);
-        db.collection("historique").find({"user": username}).toArray(function(err, docs) { //Docs est le résultat de find
-            console.log(docs)
+        db.collection("historique").find({"user": username.user}).toArray(function(err, docs) { //Docs est le résultat de find
             cb(docs);
         });
     },

@@ -13,9 +13,16 @@ var dataLayer = require('./datalayer-historique.js');
 
 app.use(cors());
 
-app.get('/get_historique/:user', function (req, res) {
-    dataLayer.get_historique(req.params.user,function(maliste){
-        res.json(maliste)
+app.get('/', function (req, res) {
+    console.log("home2");
+    res.sendFile(__dirname + '/page_historique.html');
+});
+app.post('/get_historique', function (req, res) {
+    var user = {
+        user : req.body.utilisateur
+    }
+    dataLayer.get_historique(user,function(maliste){
+        res.send(maliste)
     })
 });
 
