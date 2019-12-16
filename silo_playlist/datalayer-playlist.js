@@ -57,7 +57,7 @@ var dataLayer ={
             lvideos.push(videoid)
             var data = {
                 $set:{
-                    video : lvideos
+                    videos : lvideos
                 }
             }
             db.collection("playlist").updateOne(id,data,function(err,docs){
@@ -81,7 +81,7 @@ var dataLayer ={
                 }
             var data = {
                 $set:{
-                    video : lvideos
+                    videos : lvideos
                 }
             }
             db.collection("playlist").updateOne(id,data,function(err,docs){

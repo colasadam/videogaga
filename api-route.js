@@ -12,17 +12,7 @@ var ytdl = require('ytdl-core');
 app.use(cors());
 
 app.get('/', function (req, res) {
-    console.log("home2");
     res.sendFile(__dirname + '/home.html');
-
-
-    ytdl.getInfo("M9ak5x-NYxc", (err, info) => {
-        if (err) throw err;
-        let format = ytdl.chooseFormat(info.formats, { quality: '18' });
-        if (format) {
-            console.log(format.url);
-        }
-    });
 
     /*var link = "https://www.youtube.com/watch?v=M9ak5x-NYxc";
     var stream = new Streamlink(link).output('./' + Date.now() + '.flv').start();
@@ -51,8 +41,7 @@ app.get('/', function (req, res) {
 app.get('/watch/:videoId', function (req, res) {
     ytdl.getInfo(req.params.videoId, (err, info) => {
         if (err) throw err;
-        let format = ytdl.chooseFormat(info.formats, { quality: '134' });
-        console.log(format)
+        let format = ytdl.chooseFormat(info.formats, { quality: '18' });
         res.send(format.url);
     })
 });
