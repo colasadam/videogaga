@@ -13,12 +13,12 @@ app.use(cors());
 
 app.get('/', function (req, res) {
     console.log("home2");
-    res.sendFile(__dirname + '/home2.html');
+    res.sendFile(__dirname + '/home.html');
 
 
     ytdl.getInfo("M9ak5x-NYxc", (err, info) => {
         if (err) throw err;
-        let format = ytdl.chooseFormat(info.formats, { quality: '134' });
+        let format = ytdl.chooseFormat(info.formats, { quality: '18' });
         if (format) {
             console.log(format.url);
         }
@@ -52,7 +52,8 @@ app.get('/watch/:videoId', function (req, res) {
     ytdl.getInfo(req.params.videoId, (err, info) => {
         if (err) throw err;
         let format = ytdl.chooseFormat(info.formats, { quality: '134' });
-        res.json(format.url);
+        console.log(format)
+        res.send(format.url);
     })
 });
 
