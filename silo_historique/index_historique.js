@@ -37,9 +37,9 @@ app.controller('Historique', ['$scope','$http', 'youtubeFactory',function($scope
                 "videolist": array1
             }
             console.log(array1)
-            /*$http.post('/add_tohistorique',req).then(function(resp){
+            $http.post('/add_tohistorique',req).then(function(resp){
                 console.log(resp);
-            });*/
+            });
         });
         
 
