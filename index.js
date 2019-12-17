@@ -91,13 +91,6 @@ app.controller('WebService', ['$scope', 'youtubeFactory','$http','$cookies','$wi
         $window.location = "http://localhost:8080/";
     }
 
-    /*youtubeFactory.getVideoById({
-        videoId: "rG-haoIhH9o",
-        key: _apiKey,
-    }).then(function (_data) {
-        console.info("video by id", _data);
-    });*/
-
 }]);
 
 
@@ -191,6 +184,12 @@ app.controller('playlists', ['$scope', 'youtubeFactory','$http','$cookies',funct
             $scope.url = cb.data;
             var video = document.getElementById("video");
             video.load();
+        })
+    }
+
+    $scope.supprimer_playlist=function(nom){
+        $http.post('http://localhost:8081/delete_playlist/'+$cookies.get('user')+'/'+nom).then(function(cb){
+            document.location.reload(true);
         })
     }
 
