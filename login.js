@@ -28,6 +28,7 @@ appConnexion.controller('mainController', ['$scope','$http','$cookies',function(
             $http.post("http://localhost:8083/add_user/"+user+"/"+password)
             .then(function(cb){
                 if (cb.data !=null){
+                    $http.post("http://localhost:8082/addhistorique/"+user)
                     $cookies.put('user', user);
                     //$cookies.user = user
                     document.location.href = "/"

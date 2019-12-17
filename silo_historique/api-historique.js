@@ -28,6 +28,16 @@ app.post('/get_historique', function (req, res) {
     })
 });
 
+app.post('/addhistorique/:user',function(req,res){
+    var log ={
+        user: req.params.user,
+        videos : []
+    }
+    dataLayer.addhistorique(log,function(statut){
+        res.send(statut)
+    })
+})
+
 app.post('/add_tohistorique',function(req,res){
     var log ={
         user: req.body.utilisateur,

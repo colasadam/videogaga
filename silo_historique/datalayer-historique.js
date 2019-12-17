@@ -25,7 +25,14 @@ var dataLayer ={
         db.collection("historique").updateOne({"user":log.user},{$set : {"videos": log.video}}, function(err, result) {
             cb();
         });
+    },
+
+    addhistorique : function(log,cb){
+        db.collection("historique").insertOne(log,function(err,docs){
+            cb(200)
+        })
     }
+
 
 }
 
