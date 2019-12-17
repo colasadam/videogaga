@@ -62,11 +62,18 @@
                   <video controls="controls" id="video" autoplay>
                       <source id="videosource" src={{url}} >
                     </video>
+                    <ul ng-repeat="item in playlists">
+                        <li class="list-group-item">
+                          <a class="navbar-brand">{{item}}</a>
+                          <br>
+                          <button ng-click="addvideo(item)">ajouter</button>
+                        </li>  
+                    </ul>
                 </div>
               </div>
               <div class="col">
               </div>
             </div>
-          
+            
   </body>
 </html>

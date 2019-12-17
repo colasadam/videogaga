@@ -2,6 +2,17 @@ var app = angular.module("VideoPlayer", ['jtt_youtube', 'ngCookies']);
 
 app.controller('WebService', ['$scope', 'youtubeFactory','$http','$cookies',function($scope,youtubeFactory,$http,$cookies) {
 
+    if($cookies.get("user")){
+        $http.get('http://localhost:8081/get_playlists/'+ $cookies.get("user"))
+            .then(function (cb) {
+                myplaylist = []
+                for (var i = 0; i < cb.data.length; i++) {
+                    myplaylist.push(cb.data[i]["name"])
+                }
+                $scope.playlists = myplaylist
+            })
+    }
+
     var _apiKey = "AIzaSyAVOBfBEJ6qnKTEZ4u5o3pP66S9zUg1_2I";
     document.getElementById("resultat_recherche").style.display = "block";
     document.getElementById("lecture_video").style.display = "none";
@@ -20,6 +31,7 @@ app.controller('WebService', ['$scope', 'youtubeFactory','$http','$cookies',func
     }
 
     $scope.afficher=function(videoId){
+        $scope.videoId= videoId
         if($cookies.get("user")!=null){
             req={
                 "utilisateur": $cookies.get("user")
@@ -46,6 +58,13 @@ app.controller('WebService', ['$scope', 'youtubeFactory','$http','$cookies',func
                 $scope.url = cb.data;
                 var video = document.getElementById("video");
                 video.load();
+            })
+    }
+
+    $scope.addvideo=function(nameplaylist){
+        console.log(nameplaylist)
+        $http.post('http://localhost:8081/addto_playlist/'+$cookies.get("user")+'/'+nameplaylist+'/'+$scope.videoId)
+            .then(function(resp){
             })
     }
 
