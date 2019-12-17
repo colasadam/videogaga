@@ -21,6 +21,8 @@ app.post('/get_historique', function (req, res) {
     var user = {
         user : req.body.utilisateur
     }
+    console.log("api")
+    console.log(user)
     dataLayer.get_historique(user,function(maliste){
         res.send(maliste)
     })
