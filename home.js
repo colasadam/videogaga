@@ -1,6 +1,6 @@
 var appConnexion = angular.module('appConnexion', ['ngCookies']);
 
-function mainController($scope, $http, $window) {
+function mainController($scope, $http, $window,$cookies) {
 
     $scope.playlist = null
     $http.get('http://localhost:8081/get_playlist/adam/test')
@@ -59,8 +59,8 @@ function mainController($scope, $http, $window) {
                 var video = document.getElementById("video");
                 video.load();
             })
-
-
     });
+
+
 
 }

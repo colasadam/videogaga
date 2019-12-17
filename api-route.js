@@ -37,6 +37,10 @@ app.get('/', function (req, res) {
     });*/
 });
 
+app.get('/login',function (req,res){
+    res.sendFile(__dirname + '/login.html')
+})
+
 
 app.get('/watch/:videoId', function (req, res) {
     ytdl.getInfo(req.params.videoId, (err, info) => {
