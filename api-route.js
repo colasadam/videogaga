@@ -44,7 +44,7 @@ app.get('/login',function (req,res){
 
 app.get('/watch/:videoId', function (req, res) {
     ytdl.getInfo(req.params.videoId, (err, info) => {
-        if (err) throw err;
+        //if (err) throw err;
         let format = ytdl.chooseFormat(info.formats, { quality: '18' });
         res.send(format.url);
     })

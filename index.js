@@ -42,10 +42,11 @@ app.controller('WebService', ['$scope', 'youtubeFactory','$http','$cookies',func
             });
         }
         $http.get('/watch/' + videoId)
-            .success(function (cb) {
+            .then(function (cb) {
+                console.log(cb);
                 document.getElementById("resultat_recherche").style.display = "none";
                 document.getElementById("lecture_video").style.display = "block";
-                $scope.url = cb;
+                $scope.url = cb.data;
                 var video = document.getElementById("video");
                 video.load();
             })
