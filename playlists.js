@@ -23,6 +23,7 @@ app.controller('playlists', ['$scope', 'youtubeFactory','$http','$cookies',funct
                     videoId: element,
                     key: _apiKey,
                 }).then(function (_data) {
+                    console.log(_data)
                     $scope.videosliste.push(_data.data.items[0]);
                 });
             });
