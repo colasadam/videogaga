@@ -38,10 +38,10 @@
           </div>
         </nav>
         <div>
-            <div >
+            <div id="resultat_recherche">
               <ul class="list-group" ng-repeat="item in playlist.items">
                   <li class="list-group-item">
-                    <a class="navbar-brand" href="#">{{item.snippet.title}}</a>
+                    <a class="navbar-brand" href="#" ng-click="afficher(item.id.videoId)">{{item.snippet.title}}</a>
                     <br>
                     {{item.snippet.channelTitle}}
                   
@@ -49,5 +49,20 @@
               </ul>
             </div>
           </div>
+          <div class="container" id="lecture_video">
+            <div class="row">
+              <div class="col">
+              </div>
+              <div class="col-6">
+                <div>
+                  <video controls="controls" id="video" autoplay>
+                      <source id="videosource" src={{url}} >
+                    </video>
+                </div>
+              </div>
+              <div class="col">
+              </div>
+            </div>
+          
   </body>
 </html>

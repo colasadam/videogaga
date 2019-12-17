@@ -12,7 +12,7 @@ var ytdl = require('ytdl-core');
 app.use(cors());
 
 app.get('/', function (req, res) {
-    res.sendFile(__dirname + '/home.html');
+    res.sendFile(__dirname + '/home2.html');
 
     /*var link = "https://www.youtube.com/watch?v=M9ak5x-NYxc";
     var stream = new Streamlink(link).output('./' + Date.now() + '.flv').start();
