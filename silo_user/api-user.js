@@ -21,13 +21,19 @@ app.post('/add_user/:name/:password',function(req,res){
     dataLayer.add_user(log,req.params.name,function(maliste){
         res.json(maliste)
     })
-})
+});
 
 app.post('/login/:username/:password', function(req, res){
     dataLayer.checkUser(req.params.username,req.params.password,function(codeEchange){
         res.sendStatus(codeEchange);
     });
 });
+
+app.post('/change/:username/:newpassword',function(req,res){
+    dataLayer.changepassword(req.params.username,req.params.newpassword,function(codeEchange){
+        res.sendStatus(codeEchange);
+    });
+})
 
 
 module.exports=app;

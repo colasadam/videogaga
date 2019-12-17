@@ -38,6 +38,22 @@ var dataLayer ={
                cb(403);
           });
     },
+
+    changepassword:function(username,newpassword,cb){
+        db.collection("user").find({"user":username}).toArray(function(err,docs){
+            var id = {
+                "_id" : ObjectId(docs[0]["_id"])
+            }
+            var data = {
+                $set:{
+                    password : newpassword
+                }
+            }
+            db.collection("user").updateOne(id,data,function(err,docs){
+                cb(200)
+            })
+        })
+    },
 }
 
 
