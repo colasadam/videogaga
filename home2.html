@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html  ng-app="VideoPlayer">
   <head>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular-resource.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-resource.js"></script>
     <script src="node_modules/angular-youtube-api-factory/dist/angular-youtube-api-factory.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-cookies.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="index.js"></script>
     <meta charset="utf-8">
@@ -24,7 +25,10 @@
                 <a class="nav-link" href="#">S'inscrire</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Se connecter</a>
+                <a class="nav-link" href="login.html">Se connecter</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="page_historique.html">Historique</a>
               </li>
               <li>
                   <div class="input-group mb-3">
@@ -39,7 +43,7 @@
         </nav>
         <div>
             <div id="resultat_recherche">
-              <ul class="list-group" ng-repeat="item in playlist.items">
+              <ul class="list-group" ng-repeat="item in videolist.items">
                   <li class="list-group-item">
                     <a class="navbar-brand" href="#" ng-click="afficher(item.id.videoId)">{{item.snippet.title}}</a>
                     <br>
