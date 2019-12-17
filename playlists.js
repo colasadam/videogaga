@@ -38,6 +38,15 @@ app.controller('playlists', ['$scope', 'youtubeFactory','$http','$cookies',funct
         })
     }
 
+    $scope.lecture_playlist=function(videoId){
+        $http.get('/watch/' + videoId)
+        .then(function (cb) {
+            $scope.url = cb.data;
+            var video = document.getElementById("video");
+            video.load();
+        })
+    }
+
     document.getElementById("video").addEventListener("ended", function () {
         playlist = $scope.playlist
         trouve = false

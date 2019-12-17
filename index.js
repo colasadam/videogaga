@@ -1,6 +1,7 @@
 var app = angular.module("VideoPlayer", ['jtt_youtube', 'ngCookies']);
 
-app.controller('WebService', ['$scope', 'youtubeFactory','$http','$cookies',function($scope,youtubeFactory,$http,$cookies) {
+app.controller('WebService', ['$scope', 'youtubeFactory','$http','$cookies','$window',function($scope,youtubeFactory,$http,$cookies,$window) {
+    var _apiKey = "AIzaSyAVOBfBEJ6qnKTEZ4u5o3pP66S9zUg1_2I";
 
     if($cookies.get("user")){
         $http.get('http://localhost:8081/get_playlists/'+ $cookies.get("user"))
@@ -11,11 +12,27 @@ app.controller('WebService', ['$scope', 'youtubeFactory','$http','$cookies',func
                 }
                 $scope.playlists = myplaylist
             })
+
+        document.getElementById("champ1").href="page_historique.html";
+        document.getElementById("champ1").text="Historique";
+
+        document.getElementById("champ2").href="playlist.html";
+        document.getElementById("champ2").text="Mes Playlists";
+        document.getElementById("deconnexion").style.display="block";
+    }else{
+        document.getElementById("champ1").href="inscription.html";
+        document.getElementById("champ1").text="S'inscrire";
+
+        document.getElementById("champ2").href="login.html";
+        document.getElementById("champ2").text="Se Connecter";
+        document.getElementById("deconnexion").style.display="none";
     }
 
-    var _apiKey = "AIzaSyAVOBfBEJ6qnKTEZ4u5o3pP66S9zUg1_2I";
-    document.getElementById("resultat_recherche").style.display = "block";
-    document.getElementById("lecture_video").style.display = "none";
+    if(document.getElementById("resultat_recherche")!=null){
+        document.getElementById("resultat_recherche").style.display = "block";
+        document.getElementById("lecture_video").style.display = "none";
+    }
+    
     $scope.rechercher=function(){
         youtubeFactory.getVideosFromSearchByParams({
             q: $scope.recherche,
@@ -66,6 +83,11 @@ app.controller('WebService', ['$scope', 'youtubeFactory','$http','$cookies',func
         $http.post('http://localhost:8081/addto_playlist/'+$cookies.get("user")+'/'+nameplaylist+'/'+$scope.videoId)
             .then(function(resp){
             })
+    }
+
+    $scope.deconnexion=function(){
+        $cookies.remove('user');
+        $window.location = "http://localhost:8080/";
     }
 
     /*youtubeFactory.getVideoById({
@@ -121,4 +143,76 @@ app.controller('Historique', ['$scope','$http', 'youtubeFactory','$cookies',func
             })
     }
    
+}]);
+
+
+app.controller('playlists', ['$scope', 'youtubeFactory','$http','$cookies',function($scope,youtubeFactory,$http,$cookies) {
+    document.getElementById("afficher_playlists").style.display = "block";
+    document.getElementById("lecture_playlist").style.display = "none";
+    if($cookies.get('user')!=null){
+        $http.get('http://localhost:8081/get_playlists/'+$cookies.get('user')).then(function(resp){
+            $scope.playlist=resp.data;
+        })
+    }
+
+    $scope.lecture=function(nom_playlist){
+        var _apiKey = "AIzaSyAVOBfBEJ6qnKTEZ4u5o3pP66S9zUg1_2I";
+        $scope.playlist = null
+        $http.get('http://localhost:8081/get_playlist/'+$cookies.get('user')+'/'+nom_playlist)
+        .then(function (cb) {
+            document.getElementById("afficher_playlists").style.display = "none";
+            document.getElementById("lecture_playlist").style.display = "block";
+            $scope.videosliste = [];
+            all_video=cb.data[0].videos;
+            all_video.forEach(element => {
+                youtubeFactory.getVideoById({
+                    videoId: element,
+                    key: _apiKey,
+                }).then(function (_data) {
+                    console.log(_data)
+                    $scope.videosliste.push(_data.data.items[0]);
+                });
+            });
+            $scope.playlist = cb.data[0].videos;
+            $scope.videoID = cb.data[0].videos[0]
+            $http.get('/watch/' + $scope.videoID)
+                .then(function (cb) {
+                    $scope.url = cb.data;
+                    var video = document.getElementById("video");
+                    video.load();
+                })
+        })
+    }
+
+    $scope.lecture_playlist=function(videoId){
+        $http.get('/watch/' + videoId)
+        .then(function (cb) {
+            $scope.url = cb.data;
+            var video = document.getElementById("video");
+            video.load();
+        })
+    }
+
+    document.getElementById("video").addEventListener("ended", function () {
+        playlist = $scope.playlist
+        trouve = false
+        next = null
+        for (var i = 0; i < playlist.length; i++) {
+            if (playlist[i] == $scope.videoID && i != playlist.length - 1) {
+                next = playlist[i + 1]
+                trouve = true
+            }
+        }
+        if (trouve == false) {
+            next = playlist[0]
+        }
+        $scope.videoID = next
+        $http.get('/watch/' + next)
+            .then(function (cb) {
+                $scope.url = cb.data;
+                var video = document.getElementById("video");
+                video.load();
+            })
+    });
+    
 }]);
