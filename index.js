@@ -21,8 +21,11 @@ app.controller('WebService', ['$scope', 'youtubeFactory','$http','$cookies',func
         });
     }
 
-    $scope.afficher=function(videoId, user){
-        if($cookies.user!=null){
+    $scope.afficher=function(videoId){
+        if($cookies.get("user")!=null){
+            req={
+                "utilisateur": $cookies.get("user")
+            };
             $http.post('http://localhost:8082/get_historique',req).then(function(resp){
                 array1=resp.data[0].videos;
                 console.log(array1);
@@ -30,9 +33,9 @@ app.controller('WebService', ['$scope', 'youtubeFactory','$http','$cookies',func
                     array1.pop();
                 }
                 console.log(array1);
-                array1.unshift(id);
+                array1.unshift(videoId);
                 req={
-                    "utilisateur" : $cookies.user,
+                    "utilisateur" : $cookies.get("user"),
                     "videolist": array1
                 }
                 console.log(array1)
@@ -67,9 +70,9 @@ app.controller('Historique', ['$scope','$http', 'youtubeFactory','$cookies',func
     var _apiKey = "AIzaSyAVOBfBEJ6qnKTEZ4u5o3pP66S9zUg1_2I";
     if($cookies.get('user')!=null){
         req={
-            "utilisateur": $cookies.user
+            "utilisateur": $cookies.get("user")
         };
-        
+        console.log(req)
     
         $http.post('http://localhost:8082/get_historique',req).then(function(resp){
             console.log(resp.data);
