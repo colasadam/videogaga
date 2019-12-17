@@ -34,6 +34,7 @@ app.controller('WebService', ['$scope', 'youtubeFactory','$http','$cookies','$wi
     }
     
     $scope.rechercher=function(){
+        
         youtubeFactory.getVideosFromSearchByParams({
             q: $scope.recherche,
             maxResults: "50",
