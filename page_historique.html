@@ -41,18 +41,29 @@
           </div>
         </nav>
         <div ng-controller="Historique">
-            <div >
+            <div id="historique">
               <ul class="list-group" ng-repeat="item in historique">
                   <li class="list-group-item">
-                    <a class="navbar-brand" href="#">{{item.snippet.title}}</a>
+                    <a class="navbar-brand" href="#" ng-click=lecture(item.id)>{{item.snippet.title}}</a>
                     <br>
                     {{item.snippet.channelTitle}}
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button" id="button-addon2" ng-click="ajouter_historique(item.id)">Ajouter à l'historique</button>
-                    </div>
                   </li>  
               </ul>
             </div>
+            <div class="container" id="lecture_video">
+              <div class="row">
+                <div class="col">
+                </div>
+                <div class="col-6">
+                  <div>
+                    <video controls="controls" id="video" autoplay>
+                        <source id="videosource" src={{url}} >
+                      </video>
+                  </div>
+                </div>
+                <div class="col">
+                </div>
+              </div>
           </div>
   </body>
 </html>
