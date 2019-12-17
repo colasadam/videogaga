@@ -35,8 +35,8 @@
         </nav>
         <div ng-controller="Historique">
             <div id="historique">
-              <ul class="list-group" ng-repeat="item in historique">
-                  <li class="list-group-item">
+              <ul class="list-group" >
+                  <li class="list-group-item" ng-repeat="item in historique">
                     <a class="navbar-brand" href="#" ng-click=lecture(item.id)>{{item.snippet.title}}</a>
                     <br>
                     {{item.snippet.channelTitle}}

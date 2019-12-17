@@ -35,12 +35,14 @@
         </nav>
         <div ng-controller="playlists">
             <div id="afficher_playlists">
-                <input type="text" id="nom_playlist">
-                <button type="button" class="btn btn-success" ng-click=creer_playlist()>Créer une playlist</button>
-                <ul class="list-group" ng-repeat="item in playlist">
-                    <li class="list-group-item">
-                    <a class="navbar-brand" href="#" ng-click="lecture(item.name)">{{item.name}}</a>
-                    <button type="button" class="btn btn-danger" ng-click=supprimer_playlist(item.name)>Supprimer</button>                
+                <ul class="list-group">
+                    <li>
+                        <input type="text" id="nom_playlist">
+                        <button type="button" class="btn btn-success" ng-click=creer_playlist()>Créer une playlist</button>
+                    </li>
+                    <li class="list-group-item"  ng-repeat="item in playlist">
+                        <a class="navbar-brand" href="#" ng-click="lecture(item.name)">{{item.name}}</a>
+                        <button type="button" class="btn btn-danger" ng-click=supprimer_playlist(item.name)>Supprimer</button>                
                     </li>  
                 </ul>
             </div>
