@@ -194,6 +194,13 @@ app.controller('playlists', ['$scope', 'youtubeFactory','$http','$cookies',funct
         })
     }
 
+    $scope.creer_playlist=function(){
+        var nom=document.getElementById("nom_playlist").value;
+        $http.post('http://localhost:8081/add_playlist/'+$cookies.get('user')+'/'+nom).then(function(cb){
+            document.location.reload(true);
+        })
+    }
+
     document.getElementById("video").addEventListener("ended", function () {
         playlist = $scope.playlist
         trouve = false

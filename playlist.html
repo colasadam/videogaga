@@ -35,6 +35,8 @@
         </nav>
         <div ng-controller="playlists">
             <div id="afficher_playlists">
+                <input type="text" id="nom_playlist">
+                <button type="button" class="btn btn-success" ng-click=creer_playlist()>Créer une playlist</button>
                 <ul class="list-group" ng-repeat="item in playlist">
                     <li class="list-group-item">
                     <a class="navbar-brand" href="#" ng-click="lecture(item.name)">{{item.name}}</a>                
