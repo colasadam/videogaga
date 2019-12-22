@@ -27,6 +27,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="playlist.html" id="champ2">Mes Playlists</a>
                     </li>
+                    <li class="nav-item">
+                            <a class="nav-link" href="compte.html" id="champ3">Mon Compte</a>
+                        </li>
                     <li class="nav-item" ng-controller="WebService">
                         <a class="nav-link" id="deconnexion" ng-click="deconnexion()">Se déconnecter</a>
                     </li>
@@ -57,6 +60,7 @@
                         <div class="col">
                             <ul class="list-group" ng-repeat="item in videosliste">
                                 <li class="list-group-item">
+                                <img src={{item.snippet.thumbnails.default.url}} width="100" height="100">
                                 <a class="navbar-brand" href="#" ng-click="lecture_playlist(item.id)">{{item.snippet.title}}</a>                
                                 </li>  
                             </ul>

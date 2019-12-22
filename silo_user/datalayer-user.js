@@ -17,11 +17,21 @@ var dataLayer ={
     },
 
     add_user : function(log,user, cb) {
-        db.collection("user").insertOne(log,function(err,docs){
-            db.collection("user").find({"user":user}).toArray(function(err,docs){
-                cb(docs)
-            })
-        });
+        db.collection("user").count({"user": user},function(err, result) {
+            console.log(result)
+            if(result ==0){
+                db.collection("user").insertOne(log,function(err,docs){
+                    db.collection("user").find({"user":user}).toArray(function(err,docs){
+                        console.log(docs)
+                        cb(docs)
+                    })
+                });
+            }
+            else{
+                cb("utilisateur déjâ existant")
+            }
+        })
+
     },
 
     checkUser: function(username,password,cb){

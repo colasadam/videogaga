@@ -24,19 +24,33 @@ appConnexion.controller('mainController', ['$scope','$http','$cookies',function(
         user = document.getElementById("login").value
         password = document.getElementById("password").value
         password2 = document.getElementById("password2").value
-        if(password2==password){
+        console.log(user)
+        console.log(password)
+        if(password2==password && password!="" && user!=""){
             $http.post("http://localhost:8083/add_user/"+user+"/"+password)
             .then(function(cb){
-                if (cb.data !=null){
-                    $http.post("http://localhost:8082/addhistorique/"+user)
-                    $cookies.put('user', user);
-                    //$cookies.user = user
-                    document.location.href = "/"
-                } 
+                console.log(cb)
+                if(cb.data == "utilisateur déjâ existant"){
+                    window.alert("utilisateur déjâ existant")
+                }
+                else{
+                    if (cb.data !=null){
+                        $http.post("http://localhost:8082/addhistorique/"+user)
+                        $cookies.put('user', user);
+                        //$cookies.user = user
+                        document.location.href = "/"
+                    } 
+                }
             })
         }
         else{
-            window.alert("Mots de passe différents")
+            if(user =="" || password == ""){
+                window.alert("Veillez remplir les champs")
+            }
+            else{
+                window.alert("Mots de passe différents")
+            }
+            
         }
 
     }

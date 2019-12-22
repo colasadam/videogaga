@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="VideoPlayer">
+
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-resource.js"></script>
+    <script src="node_modules/angular-youtube-api-factory/dist/angular-youtube-api-factory.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular-cookies.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="index.js"></script>
+    <meta charset="utf-8">
+    <title>VideoGaGa</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+            <img src="img/logo.png" width="50" height="50" alt="">
+        </a>
+        <a class="navbar-brand" href="/">VideoGaGa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="page_historique.html" id="champ1">Historique</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="playlist.html" id="champ2">Mes Playlists</a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="compte.html" id="champ3">Mon Compte</a>
+                    </li>
+                <li class="nav-item" ng-controller="WebService">
+                    <a class="nav-link" id="deconnexion" ng-click="deconnexion()">Se déconnecter</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div ng-controller="Compte">
+        <input type="text" id="password" class="fadeIn second" name="login" placeholder="nouveau password">
+        <input type="text" id="password2" class="fadeIn third" name="login" placeholder="verification password">
+        <bouton type="submit" class="fadeIn fourth" ng-click="change()"> Changer mon mot de passe  </bouton>
+    </div>
+</body>
+
+</html>
