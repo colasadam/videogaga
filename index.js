@@ -215,12 +215,9 @@ app.controller('playlists', ['$scope', 'youtubeFactory', '$http', '$cookies', fu
             next = playlist[0]
         }
         $scope.videoID = next
-        $http.get('/watch/' + next)
-            .then(function (cb) {
-                $scope.url = cb.data;
-                var video = document.getElementById("video");
-                video.load();
-            })
+        $scope.url = "videos/"+$scope.videoID+".mp4";
+        var video = document.getElementById("video");
+        video.load();
     });
 
 }]);
@@ -239,10 +236,10 @@ app.controller('Compte', ['$scope', 'youtubeFactory', '$http', '$cookies', funct
             if (password == password2) {
                 $cookies.get('user')
                 $http.post('http://localhost:8083/change/' + $cookies.get('user') + '/' + password).then(function (cb) {
-                   if(cb="OK"){
-                    window.alert("mot de passe modifié")
-                    window.location.replace("/");
-                   } 
+                    if (cb = "OK") {
+                        window.alert("mot de passe modifié")
+                        window.location.replace("/");
+                    }
                 })
             }
             else {
