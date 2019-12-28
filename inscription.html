@@ -124,7 +124,7 @@ input[type=button]:active, input[type=submit]:active, input[type=reset]:active  
   transform: scale(0.95);
 }
 
-input[type=text] {
+input[type=text], input[type=password] {
   background-color: #f6f6f6;
   border: none;
   color: #0d0d0d;
@@ -287,9 +287,9 @@ h1{
     <!-- Login Form -->
   <div>
       <input type="text" id="login" class="fadeIn second" name="login" placeholder="username">
-      <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
-      <input type="text" id="password2" class="fadeIn third" name="login" placeholder="verif password">
-      <bouton type="submit" class="fadeIn fourth"  ng-click="inscription()"> Inscription </bouton>
+      <input type="password" id="password" class="fadeIn third" name="login" placeholder="password">
+      <input type="password" id="password2" class="fadeIn third" name="login" placeholder="verif password">
+      <input type="submit" class="fadeIn fourth"  ng-click="inscription()" value="Inscription">
     </div>
     <!-- Remind Passowrd -->
     <div id="formFooter">
