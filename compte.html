@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="index.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
     <meta charset="utf-8">
     <title>VideoGaGa</title>
 </head>
@@ -40,10 +41,32 @@
             </ul>
         </div>
     </nav>
-    <div ng-controller="Compte">
-        <input type="text" id="password" class="fadeIn second" name="login" placeholder="nouveau password">
-        <input type="text" id="password2" class="fadeIn third" name="login" placeholder="verification password">
-        <bouton type="submit" class="fadeIn fourth" ng-click="change()"> Changer mon mot de passe  </bouton>
+    <div ng-controller="Compte" id="formulaire_mdp">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Changer mot de passe</label>
+        <div class="row">
+            <div class="col-6">
+                <form>
+                    <div class="form-group row">
+                      
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="password" name="login" placeholder="nouveau mot de passe">
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <div class="col-sm-10">
+                        <input type="password" class="form-control" id="password2" name="login" placeholder="verification password">
+                      </div>
+                    </div>
+                    <bouton type="submit" class="btn btn-primary mb-2" ng-click="change()"> Changer mon mot de passe  </bouton>
+                </form> 
+            </div>
+            <div class="col-6">
+            </div>
+            <div class="col">
+            </div>
+          </div>
+
+               
     </div>
 </body>
 
