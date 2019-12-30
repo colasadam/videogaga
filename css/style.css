@@ -45,3 +45,7 @@ body {
       border: 1px solid #ccc;  
     }
   }
+
+  #formulaire_mdp{
+    margin-left: 5px;
+  }

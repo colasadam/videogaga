@@ -11,7 +11,6 @@ appConnexion.controller('mainController', ['$scope','$http','$cookies',function(
                 console.log(cb)
                 if (cb.data =="OK"){
                     $cookies.put('user', user);
-                    //$cookies.user = user
                     document.location.href = "/"
                 }
                 else{

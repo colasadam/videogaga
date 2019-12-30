@@ -19,13 +19,16 @@ app.controller('WebService', ['$scope', 'youtubeFactory', '$http', '$cookies', '
         document.getElementById("champ2").href = "playlist.html";
         document.getElementById("champ2").text = "Mes Playlists";
         document.getElementById("deconnexion").style.display = "block";
+        document.getElementById("champ3").style.display = "block";
     } else {
         document.getElementById("champ1").href = "inscription.html";
         document.getElementById("champ1").text = "S'inscrire";
 
         document.getElementById("champ2").href = "login.html";
         document.getElementById("champ2").text = "Se Connecter";
+        console.log("test");
         document.getElementById("deconnexion").style.display = "none";
+        document.getElementById("champ3").style.display = "none";
     }
 
     if (document.getElementById("resultat_recherche") != null) {
