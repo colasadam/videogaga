@@ -9,7 +9,7 @@
     "historique": "node silo_historique/server-historique.js",
     "playlist": "node silo_playlist/server-playlist.js",
     "server": "node server.js",
-    "start": "npm-run-all --parallel server user"
+    "start": "npm-run-all --parallel user"
   },
   "author": "adam",
   "license": "ISC",

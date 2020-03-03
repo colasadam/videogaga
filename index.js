@@ -100,7 +100,7 @@ app.controller('WebService', ['$scope', 'youtubeFactory', '$http', '$cookies', '
 
 app.controller('Historique', ['$scope', '$http', 'youtubeFactory', '$cookies', function ($scope, $http, youtubeFactory, $cookies) {
 
-    var _apiKey = "AIzaSyAVOBfBEJ6qnKTEZ4u5o3pP66S9zUg1_2I";
+    var _apiKey = "AIzaSyAbdD4y8QSHt6POjmGKeEhB3wdtVuN4kig";
     document.getElementById("historique").style.display = "block";
     document.getElementById("lecture_video").style.display = "none";
 
