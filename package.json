@@ -5,7 +5,11 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js && node silo_user/sever-user.js"
+    "user": "node silo_user/server-user.js",
+    "historique": "node silo_historique/server-historique.js",
+    "playlist": "node silo_playlist/server-playlist.js",
+    "server": "node server.js",
+    "start": "npm-run-all --parallel user historique playlist server"
   },
   "author": "adam",
   "license": "ISC",
@@ -19,5 +23,8 @@
     "morgan": "^1.9.1",
     "streamlink": "^1.0.4",
     "ytdl-core": "^1.0.3"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
   }
 }
