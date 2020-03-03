@@ -1,11 +1,15 @@
-
 var app = angular.module("VideoPlayer", ['jtt_youtube', 'ngCookies']);
 
 app.controller('WebService', ['$scope', 'youtubeFactory', '$http', '$cookies', '$window', function ($scope, youtubeFactory, $http, $cookies, $window) {
 
-    var _apiKey ="";
-    $http.get('./config.json').then(function (resp) { _apiKey = resp.apikey})
-    console.log(_apiKey)
+    $scope._apiKey =""
+    $http.get('./config.json').then(function (resp) { 
+        console.log($scope._apiKey)
+        $scope._apiKey = resp.data.API_KEY
+        console.log($scope._apiKey)
+    })
+    console.log($scope._apiKey)
+
     if ($cookies.get("user")) {
         $http.get('http://localhost:8081/get_playlists/' + $cookies.get("user"))
             .then(function (cb) {
@@ -44,7 +48,7 @@ app.controller('WebService', ['$scope', 'youtubeFactory', '$http', '$cookies', '
         youtubeFactory.getVideosFromSearchByParams({
             q: $scope.recherche,
             maxResults: "50",
-            key: _apiKey,
+            key: $scope._apiKey,
         }).then(function (_data) {
             document.getElementById("resultat_recherche").style.display = "block";
             document.getElementById("lecture_video").style.display = "none";
@@ -103,7 +107,12 @@ app.controller('WebService', ['$scope', 'youtubeFactory', '$http', '$cookies', '
 
 app.controller('Historique', ['$scope', '$http', 'youtubeFactory', '$cookies', function ($scope, $http, youtubeFactory, $cookies) {
 
-    var _apiKey = "AIzaSyAbdD4y8QSHt6POjmGKeEhB3wdtVuN4kig";
+    $scope._apiKey =""
+    $http.get('./config.json').then(function (resp) { 
+        console.log($scope._apiKey)
+        $scope._apiKey = resp.data.API_KEY
+        console.log($scope._apiKey)
+    })
     document.getElementById("historique").style.display = "block";
     document.getElementById("lecture_video").style.display = "none";
 
@@ -168,7 +177,7 @@ app.controller('playlists', ['$scope', 'youtubeFactory', '$http', '$cookies', fu
                 all_video.forEach(element => {
                     youtubeFactory.getVideoById({
                         videoId: element,
-                        key: _apiKey,
+                        key: $scope._apiKey,
                     }).then(function (_data) {
                         console.log(_data)
                         $scope.videosliste.push(_data.data.items[0]);
