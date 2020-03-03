@@ -1,8 +1,11 @@
+
 var app = angular.module("VideoPlayer", ['jtt_youtube', 'ngCookies']);
 
 app.controller('WebService', ['$scope', 'youtubeFactory', '$http', '$cookies', '$window', function ($scope, youtubeFactory, $http, $cookies, $window) {
-    var _apiKey = "AIzaSyBNZlx-6Q1P-usXeKM3mglzfLFqBFieVRk";
 
+    var _apiKey ="";
+    $http.get('./config.json').then(function (resp) { _apiKey = resp.apikey})
+    console.log(_apiKey)
     if ($cookies.get("user")) {
         $http.get('http://localhost:8081/get_playlists/' + $cookies.get("user"))
             .then(function (cb) {
